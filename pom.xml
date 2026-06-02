@@ -18,6 +18,8 @@
 <!--    child-->
     <modules>
         <module>cloud</module>
+        <module>service</module>
+        <module>common-lib</module>
     </modules>
 
     <url/>
