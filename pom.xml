@@ -10,10 +10,15 @@
     </parent>
     <groupId>com.sanskar.job</groupId>
     <artifactId>job-portal-system</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name/>
+    <name>Job Portal System</name>
     <description/>
 
+<!--    child-->
+    <modules>
+        <module>cloud</module>
+    </modules>
 
     <url/>
     <licenses>
