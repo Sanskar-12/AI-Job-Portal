@@ -42,6 +42,12 @@ public class Company {
 
     private String website;
 
+    private String email;
+
+    private String phone;
+
+    private Boolean verified=false;
+
     private Integer foundedYear;
 
     @Enumerated(EnumType.STRING)
