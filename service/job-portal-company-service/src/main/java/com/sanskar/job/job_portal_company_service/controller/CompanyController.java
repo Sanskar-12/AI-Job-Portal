@@ -46,7 +46,7 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getAllCompanies(companyType,industryType,companyStatus));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CompanyResponse> updateCompany(
             @PathVariable Long id,
             @RequestHeader("X-User-Id") Long ownerId, @RequestBody @Valid CompanyRequest companyRequest

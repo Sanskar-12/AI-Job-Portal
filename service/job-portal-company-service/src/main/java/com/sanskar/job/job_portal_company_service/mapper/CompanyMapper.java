@@ -34,6 +34,7 @@ public class CompanyMapper {
                 .socialLink(mapSocialLinks(company.getSocialLink()))
                 .createdAt(company.getCreatedAt())
                 .updatedAt(company.getUpdatedAt())
+                .verifiedAt(company.getVerifiedAt())
                 .build();
     }
 

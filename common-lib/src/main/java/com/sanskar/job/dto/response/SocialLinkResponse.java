@@ -1,10 +1,12 @@
 package com.sanskar.job.dto.response;
 
 import com.sanskar.job.domain.SocialPlatform;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Builder
 public class SocialLinkResponse {
     private SocialPlatform platform;

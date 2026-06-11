@@ -14,6 +14,7 @@ import com.sanskar.job.job_portal_company_service.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -148,6 +149,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         company.setCompanyStatus(CompanyStatus.ACTIVE);
         company.setVerified(true);
+        company.setVerifiedAt(LocalDateTime.now());
 
         return CompanyMapper.mapToResponse(companyRepository.save(company));
     }
@@ -173,6 +175,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         company.setCompanyStatus(CompanyStatus.SUSPENDED);
         company.setVerified(false);
+        company.setVerifiedAt(null);
 
         return CompanyMapper.mapToResponse(companyRepository.save(company));
     }
