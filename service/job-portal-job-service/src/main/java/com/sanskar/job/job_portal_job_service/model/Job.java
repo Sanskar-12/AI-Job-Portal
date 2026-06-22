@@ -43,7 +43,10 @@ public class Job {
     @Column(nullable = false)
     private Long companyId;
 
-//    private JobCategory jobCategory;
+    @Column(nullable = false)
+    private Long employerId;
+
+//    private JobCategory category;
 //
 //    private Set<JobSkills> skills;
 //

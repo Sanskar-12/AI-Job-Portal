@@ -11,19 +11,19 @@ public interface JobService {
 
     JobResponse createJob(Long employerId, JobRequest req);
 
-    JobResponse getJobById(Long id);
+    JobResponse getJobById(Long id) throws Exception;
 
-    JobResponse updateJob(Long jobId, Long employerId, JobRequest req);
+    JobResponse updateJob(Long jobId, Long employerId, JobRequest req) throws Exception;
 
     List<JobResponse> getJobs(JobSearchRequest req);
 
     List<JobResponse> getJobsByCompany(Long companyId);
 
-    JobResponse publishJob(Long jobId, Long employerId);
+    JobResponse publishJob(Long jobId, Long employerId) throws Exception;
 
-    JobResponse closeJob(Long jobId, Long employerId);
+    JobResponse closeJob(Long jobId, Long employerId) throws Exception;
 
-    JobResponse deleteJob(Long jobId, Long employerId);
+    void deleteJob(Long jobId, Long employerId) throws Exception;
 
     List<JobResponse> getAllJobsAdmin();
 }

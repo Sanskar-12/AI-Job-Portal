@@ -20,9 +20,10 @@ public class JobResponse {
     private Long id;
     private String title;
     private String description;
+    private String requirements;
     private String responsibilities;
     private String benefits;
-    private CompanySummaryResponse company;
+    private CompanyResponse company;
     private Long employerId;
 //    private JobCategoryResponse category;
 //    private Set<JobSkillResponse> skills;
