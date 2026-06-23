@@ -1,0 +1,24 @@
+package com.sanskar.job.dto.response;
+
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class JobCategoryResponse {
+    private Long id;
+    private String name;
+    private String slug;
+    private String description;
+    private String iconUrl;
+    private Boolean active;
+    private Long parentId;
+    private String parentName;
+    private List<JobCategoryResponse> subCategories;
+    private LocalDateTime createdAt;
+}
