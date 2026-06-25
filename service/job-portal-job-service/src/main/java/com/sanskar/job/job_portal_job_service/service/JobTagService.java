@@ -6,6 +6,7 @@ import com.sanskar.job.job_portal_job_service.mapper.JobTagRequest;
 import com.sanskar.job.job_portal_job_service.model.JobTag;
 
 import java.util.List;
+import java.util.Set;
 
 public interface JobTagService {
 
@@ -20,4 +21,6 @@ public interface JobTagService {
     void deleteTag(Long id) throws Exception;
 
     JobTag getTagEntityById(Long id) throws Exception;
+
+    Set<JobTag> getTagsById(Set<Long> ids);
 }

@@ -6,6 +6,7 @@ import com.sanskar.job.job_portal_job_service.model.JobCategory;
 import com.sanskar.job.job_portal_job_service.payload.JobCategoryRequest;
 import com.sanskar.job.job_portal_job_service.repository.JobCategoryRepository;
 import com.sanskar.job.job_portal_job_service.service.JobCategoryService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class JobCategoryServiceImpl implements JobCategoryService {
                 .slug(slug)
                 .description(req.getDescription())
                 .iconUrl(req.getIconUrl())
+                .active(true)
                 .parentCategory(parent)
                 .build();
 
@@ -79,6 +81,7 @@ public class JobCategoryServiceImpl implements JobCategoryService {
     }
 
     @Override
+    @Transactional() // keeps the database connection open until the method finishes execution
     public JobCategoryResponse getCategoryById(Long id) throws Exception {
         JobCategory jobCategory=getCategoryEntityById(id);
         return JobCategoryMapper.toCategoryResponse(jobCategory,true);

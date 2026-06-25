@@ -4,13 +4,12 @@ import com.sanskar.job.dto.response.JobCategoryResponse;
 import com.sanskar.job.job_portal_job_service.model.JobCategory;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class JobCategoryMapper {
 
     public static JobCategoryResponse toCategoryResponse(JobCategory request,boolean includeChildren) {
 
-        List<JobCategoryResponse> subCategories = includeChildren
+        List<JobCategoryResponse> subCategories = (includeChildren && request.getSubCategories()!=null)
                 ? request.getSubCategories()
                 .stream()
                 .map(subCategory -> toCategoryResponse(subCategory, false))

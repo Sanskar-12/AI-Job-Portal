@@ -1,16 +1,25 @@
 package com.sanskar.job.job_portal_job_service.mapper;
 
-import com.sanskar.job.dto.response.CompanyResponse;
-import com.sanskar.job.dto.response.JobResponse;
+import com.sanskar.job.dto.response.*;
 import com.sanskar.job.job_portal_job_service.model.Job;
 import com.sanskar.job.job_portal_job_service.model.embeddable.JobLocation;
 import com.sanskar.job.job_portal_job_service.model.embeddable.SalaryRange;
+
+import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JobMapper {
 
     public static JobResponse mapToResponse(Job job, CompanyResponse companyResponse) {
         JobLocation loc=job.getLocation();
         SalaryRange sal=job.getSalaryRange();
+
+        Set<JobSkillResponse> skills=job.getSkills()==null ? Collections.emptySet() : job.getSkills().stream().map(JobSkillMapper::toJobSkillResponse).collect(Collectors.toSet());
+
+        JobCategoryResponse category=JobCategoryMapper.toCategoryResponse(job.getCategory(),false);
+
+        Set<JobTagResponse> tags=job.getTags()==null ? Collections.emptySet() : job.getTags().stream().map(JobTagMapper::toTagResponse).collect(Collectors.toSet());
 
         return JobResponse.builder()
                 .id(job.getId())
@@ -20,6 +29,9 @@ public class JobMapper {
                 .responsibilities(job.getResponsibilities())
                 .benefits(job.getBenefits())
                 .company(companyResponse)
+                .skills(skills)
+                .category(category)
+                .tags(tags)
                 .address(loc!=null ? loc.getAddress() : null)
                 .city(loc!=null ? loc.getCity() : null)
                 .state(loc!=null ? loc.getState() : null)

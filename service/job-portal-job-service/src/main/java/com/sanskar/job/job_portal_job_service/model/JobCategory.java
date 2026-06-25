@@ -35,7 +35,7 @@ public class JobCategory {
     @ManyToOne(fetch = FetchType.LAZY)
     private JobCategory parentCategory;
 
-    @OneToMany(mappedBy = "parent",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "parentCategory",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<JobCategory> subCategories=new ArrayList<>();
 
     private Boolean active=true;

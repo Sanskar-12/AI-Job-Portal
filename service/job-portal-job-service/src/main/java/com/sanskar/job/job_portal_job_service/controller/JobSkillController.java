@@ -24,6 +24,7 @@ public class JobSkillController {
         return ResponseEntity.status(HttpStatus.CREATED).body(jobSkillService.createSkill(request));
     }
 
+    @GetMapping("/all")
     public ResponseEntity<List<JobSkillResponse>> getAllSkills() throws Exception {
         return ResponseEntity.ok(jobSkillService.getAllSkills());
     }
@@ -38,7 +39,7 @@ public class JobSkillController {
         return ResponseEntity.ok(jobSkillService.updateSkill(id,request));
     }
 
-    @PutMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteSkill(@PathVariable Long id) throws Exception {
         jobSkillService.deleteSkill(id);
         return ResponseEntity.ok(new ApiResponse("Skill Deleted Successfully",true));

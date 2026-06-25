@@ -5,6 +5,7 @@ import com.sanskar.job.dto.response.ApiResponse;
 import com.sanskar.job.dto.response.JobResponse;
 import com.sanskar.job.job_portal_job_service.payload.JobSearchRequest;
 import com.sanskar.job.job_portal_job_service.service.JobService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class JobController {
     private final JobService jobService;
 
     @PostMapping("/create")
-    public ResponseEntity<JobResponse> createJob(@RequestHeader("X-User-Id") Long employerId,  @RequestBody @Valid JobRequest request) {
+    public ResponseEntity<JobResponse> createJob(@RequestHeader("X-User-Id") Long employerId,  @RequestBody @Valid JobRequest request) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(jobService.createJob(employerId,request));
     }
 
@@ -75,6 +76,7 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
+    @Transactional()
     public ResponseEntity<JobResponse> getJobById(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(jobService.getJobById(id));
     }

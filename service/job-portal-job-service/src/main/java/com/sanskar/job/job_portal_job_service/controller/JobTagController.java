@@ -19,6 +19,7 @@ public class JobTagController {
 
     private final JobTagService jobTagService;
 
+    @PostMapping("/create")
     public ResponseEntity<JobTagResponse> createJobTag(@RequestBody @Valid JobTagRequest jobTagRequest) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(jobTagService.createTag(jobTagRequest));
     }
@@ -40,7 +41,7 @@ public class JobTagController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteTag(@PathVariable Long id) throws Exception {
-        jobTagService.getTagById(id);
+        jobTagService.deleteTag(id);
         return ResponseEntity.ok(new ApiResponse("Tag Deleted Successfully",true));
     }
 }
