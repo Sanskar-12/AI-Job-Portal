@@ -34,6 +34,7 @@ public class ResumeServiceImpl implements ResumeService {
                 .template(request.getTemplate())
                 .visibility(request.getVisibility())
                 .isDefault(Boolean.TRUE.equals(request.getIsDefault()))
+                .isActive(true)
                 .build();
 
         Resume savedResume=resumeRepository.save(resume);
@@ -50,7 +51,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public List<ResumeResponse> getMyResumes(Long candidateId) {
-        return resumeRepository.findByCandidateId(candidateId).stream().map(this::buildFullResponse).toList();
+        return resumeRepository.findByCandidateIdAndIsActiveTrue(candidateId).stream().map(this::buildFullResponse).toList();
     }
 
     @Override
@@ -106,18 +107,39 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public ResumeResponse updateSummary(Long resumeId, Long candidateId, String summary) {
-        return null;
+    public ResumeResponse updateSummary(Long resumeId, Long candidateId, String summary) throws Exception {
+        Resume resume=getResumeEntity(resumeId);
+        assertOwner(resume,candidateId);
+        resume.setSummary(summary);
+        Resume updatedResume=resumeRepository.save(resume);
+
+        return buildFullResponse(updatedResume);
     }
 
     @Override
-    public ResumeResponse setDefaultResume(Long resumeId, Long candidateId) {
-        return null;
+    public ResumeResponse setDefaultResume(Long resumeId, Long candidateId) throws Exception {
+        Resume resume=getResumeEntity(resumeId);
+        assertOwner(resume,candidateId);
+
+        resumeRepository.findByCandidateIdAndIsDefaultTrue(candidateId).ifPresent((existingResume)->{
+            existingResume.setIsDefault(false);
+            resumeRepository.save(existingResume);
+        });
+
+        resume.setIsDefault(true);
+        Resume updatedResume=resumeRepository.save(resume);
+
+        return buildFullResponse(updatedResume);
     }
 
     @Override
-    public void deleteResume(Long resumeId, Long candidateId) {
+    public void deleteResume(Long resumeId, Long candidateId) throws Exception {
+        Resume resume=getResumeEntity(resumeId);
+        assertOwner(resume,candidateId);
 
+        resume.setIsActive(false);
+        resume.setIsDefault(false);
+        resumeRepository.save(resume);
     }
 
     @Override

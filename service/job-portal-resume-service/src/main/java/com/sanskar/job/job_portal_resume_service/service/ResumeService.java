@@ -17,11 +17,11 @@ public interface ResumeService {
 
     ResumeResponse updatePersonalInfo(Long resumeId, Long candidateId, PersonalInfoResponse request) throws Exception;
 
-    ResumeResponse updateSummary(Long resumeId, Long candidateId, String summary);
+    ResumeResponse updateSummary(Long resumeId, Long candidateId, String summary) throws Exception;
 
-    ResumeResponse setDefaultResume(Long resumeId, Long candidateId);
+    ResumeResponse setDefaultResume(Long resumeId, Long candidateId) throws Exception;
 
-    void deleteResume(Long resumeId, Long candidateId);
+    void deleteResume(Long resumeId, Long candidateId) throws Exception;
 
     Resume getResumeEntity(Long resumeId) throws Exception;
 }

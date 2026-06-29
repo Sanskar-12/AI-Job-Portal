@@ -46,6 +46,8 @@ public class Resume {
 
     private Integer completionScore=0;
 
+    private Boolean isActive=true;
+
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
