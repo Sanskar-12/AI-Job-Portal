@@ -1,6 +1,6 @@
 package com.sanskar.job.job_portal_resume_service.service;
 
-import com.sanskar.job.dto.PersonalInfo;
+import com.sanskar.job.dto.response.PersonalInfoResponse;
 import com.sanskar.job.dto.response.ResumeResponse;
 import com.sanskar.job.job_portal_resume_service.model.Resume;
 import com.sanskar.job.job_portal_resume_service.payload.CreateResumeRequest;
@@ -11,11 +11,11 @@ public interface ResumeService {
 
     ResumeResponse createResume(Long candidateId, CreateResumeRequest request);
 
-    ResumeResponse getResumeById(Long resumeId, Long candidateId);
+    ResumeResponse getResumeById(Long resumeId, Long candidateId) throws Exception;
 
     List<ResumeResponse> getMyResumes(Long candidateId);
 
-    ResumeResponse updatePersonalInfo(Long resumeId, Long candidateId, PersonalInfo request);
+    ResumeResponse updatePersonalInfo(Long resumeId, Long candidateId, PersonalInfoResponse request) throws Exception;
 
     ResumeResponse updateSummary(Long resumeId, Long candidateId, String summary);
 
@@ -23,5 +23,5 @@ public interface ResumeService {
 
     void deleteResume(Long resumeId, Long candidateId);
 
-    Resume getResumeEntity(Long resumeId);
+    Resume getResumeEntity(Long resumeId) throws Exception;
 }

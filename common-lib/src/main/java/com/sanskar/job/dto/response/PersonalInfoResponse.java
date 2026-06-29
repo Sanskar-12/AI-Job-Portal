@@ -1,4 +1,4 @@
-package com.sanskar.job.dto;
+package com.sanskar.job.dto.response;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PersonalInfo {
+public class PersonalInfoResponse {
 
     private String firstName;
     private String lastName;
