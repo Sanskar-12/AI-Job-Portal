@@ -1,4 +1,4 @@
-package com.sanskar.job.job_portal_resume_service.service;
+package com.sanskar.job.job_portal_resume_service.service.impl;
 
 import com.sanskar.job.dto.response.PersonalInfoResponse;
 import com.sanskar.job.dto.response.ResumeResponse;
@@ -7,6 +7,7 @@ import com.sanskar.job.job_portal_resume_service.model.PersonalInfo;
 import com.sanskar.job.job_portal_resume_service.model.Resume;
 import com.sanskar.job.job_portal_resume_service.payload.CreateResumeRequest;
 import com.sanskar.job.job_portal_resume_service.repository.ResumeRepository;
+import com.sanskar.job.job_portal_resume_service.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
