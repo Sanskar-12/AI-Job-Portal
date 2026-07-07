@@ -1,10 +1,7 @@
 package com.sanskar.job.job_portal_resume_service.mapper;
 
 import com.sanskar.job.dto.response.*;
-import com.sanskar.job.job_portal_resume_service.model.Education;
-import com.sanskar.job.job_portal_resume_service.model.PersonalInfo;
-import com.sanskar.job.job_portal_resume_service.model.Resume;
-import com.sanskar.job.job_portal_resume_service.model.ResumeSkill;
+import com.sanskar.job.job_portal_resume_service.model.*;
 
 public class ResumeMapper {
     public static PersonalInfoResponse toPersonalInfoResponse(PersonalInfo personalInfo) {
@@ -70,6 +67,23 @@ public class ResumeMapper {
                 .isCurrentlyStudying(edu.getIsCurrentlyStudying())
                 .description(edu.getDescription())
                 .displayOrder(edu.getDisplayOrder())
+                .build();
+    }
+
+    public static ProjectResponse toProjectResponse(Project project) {
+        if(project==null) return null;
+
+        return ProjectResponse.builder()
+                .id(project.getId())
+                .title(project.getTitle())
+                .description(project.getDescription())
+                .technologies(project.getTechnologies())
+                .projectUrl(project.getProjectUrl())
+                .sourceCodeUrl(project.getSourceCodeUrl())
+                .startDate(project.getStartDate())
+                .endDate(project.getEndDate())
+                .isOngoing(project.getIsOngoing())
+                .displayOrder(project.getDisplayOrder())
                 .build();
     }
 }
