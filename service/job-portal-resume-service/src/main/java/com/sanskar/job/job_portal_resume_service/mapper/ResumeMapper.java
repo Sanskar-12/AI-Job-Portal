@@ -86,4 +86,14 @@ public class ResumeMapper {
                 .displayOrder(project.getDisplayOrder())
                 .build();
     }
+
+    public static LanguageResponse toLanguageResponse(Language language) {
+        if(language==null) return null;
+        return LanguageResponse.builder()
+                .id(language.getId())
+                .languageName(language.getLanguageName())
+                .proficiency(language.getProficiency())
+                .displayOrder(language.getDisplayOrder())
+                .build();
+    }
 }
